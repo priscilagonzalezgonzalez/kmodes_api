@@ -8,6 +8,3 @@ train_model()
 @app.route("/api/v1/predictions/<int:id>", methods=["GET"])
 def predict(id):
     return jsonify(get_prediction(id))
-
-
-app.run(debug=True)
