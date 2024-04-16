@@ -62,6 +62,7 @@ def get_prediction(productId):
     cluster_producto_entrada = km.predict([producto_entrada])[0]
     productos_recomendados = df[clusters == cluster_producto_entrada]
     
-    data_dict = productos_recomendados.to_dict(orient='records')
+    #data_dict = productos_recomendados.index.to_dict(orient='records')
+    data_dict = productos_recomendados.index.to_frame().to_dict(orient='records')
 
     return data_dict
