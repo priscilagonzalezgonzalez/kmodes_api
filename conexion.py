@@ -6,9 +6,9 @@ import pandas as pd
 
 def connector():
     return mysql.connector.connect(
-        host= "localhost",
+        host= "chiva-puma.cbaskge6gh1c.us-east-2.rds.amazonaws.com",
         user= "root",
-        password= "sayonarasaly4",
+        password= "12345678",
         database = "chivapuma",
         port = "3306"
     )
