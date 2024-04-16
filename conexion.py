@@ -4,6 +4,10 @@ import mysql.connector
 from mysql.connector import errorcode
 import pandas as pd
 
+df = pd. DataFrame()
+km = None
+clusters = None
+
 def connector():
     return mysql.connector.connect(
         host= "chiva-puma.cbaskge6gh1c.us-east-2.rds.amazonaws.com",
@@ -42,6 +46,7 @@ def get_products():
 
 def train_model():
     get_products()
+    global df
     selected_columns = ['equipo', 'categoria', 'sexo']
     data_np = df[selected_columns].values
     global km
@@ -50,17 +55,13 @@ def train_model():
     clusters = km.fit_predict(data_np)
 
 def get_prediction(productId):
+    global df
+    global km
+    global clusters
     producto_entrada = get_product(productId)
-    #producto_entrada = np.array([2, 0, 1])
     cluster_producto_entrada = km.predict([producto_entrada])[0]
     productos_recomendados = df[clusters == cluster_producto_entrada]
     
     data_dict = productos_recomendados.to_dict(orient='records')
 
     return data_dict
-    """ print("Productos recomendados:")
-    print(productos_recomendados) """
-
-""" train_model()
-producto_entrada = 2
-get_prediction(producto_entrada) """
