@@ -1,4 +1,5 @@
 gunicorn
+Flask
 kmodes
 mysql-connector-python
 pandas
