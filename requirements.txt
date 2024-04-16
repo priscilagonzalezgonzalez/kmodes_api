@@ -1,0 +1,4 @@
+kmodes
+mysql-connector-python
+pandas
+numpy
